@@ -4,7 +4,9 @@
         "module": "commonjs",
         "sourceMap": true,
         "noImplicitReturns": true,
-        "declaration": true
+        "declaration": true,
+        "outDir": "./dist",
+        "rootDir": "./src"
     },
     "include": [
         "src/**/*.ts"

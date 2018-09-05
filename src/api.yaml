@@ -16,13 +16,51 @@ paths:
       summary: Login to the application
       description: Login to the application
       tags:
-        - Auth
+        - Login
       parameters:
         - name: payload
           in: body
           description: username/password
           schema:
             $ref: '#/definitions/LoginModal'
+      responses:
+        '200':
+          $ref: '#/responses/Success'
+        '400':
+          $ref: '#/responses/BadRequest'
+        '404':
+          $ref: '#/responses/NotFound'
+  /auth/check:
+    get:
+      operationId: auth_check
+      summary: To check the authentication
+      description: To check the authentication
+      tags:
+        - Auth
+      parameters:
+        - name: Authorization
+          in: header
+          description: accessToken as "Bearer accessToken"
+          type: string
+      responses:
+        '200':
+          $ref: '#/responses/Success'
+        '400':
+          $ref: '#/responses/BadRequest'
+        '404':
+          $ref: '#/responses/NotFound'
+  /auth/info:
+    get:
+      operationId: auth_info
+      summary: To get the user's information
+      description: To get the user's information
+      tags:
+        - Auth
+      parameters:
+        - name: accessToken
+          in: header
+          description: accessToken as "Bearer accessToken"
+          type: string
       responses:
         '200':
           $ref: '#/responses/Success'
@@ -46,11 +84,11 @@ definitions:
     type: object
     required:
       - username
-      - passowrd
+      - password
     properties:
       username:
         type: string
-      passowrd:
+      password:
         type: string
   Error:
     type: object
